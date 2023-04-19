@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>To-Do List</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn border border-2 border-dark">Add Task</button>
+  </form>
+  <hr>
+  <ul>
+    {% for task in tasks %}
+      {% if task.done %}
+        <a href="{% url 'task_detail' task.id %}">
+          <li style="color:white; background-color: rgb(43, 175, 31); padding: 3px;"><i class="fas fa-clock"></i>{{ task.title }}</li>
+        </a>
+      {% else %}
+        <a href="{% url 'task_detail' task.id %}">
+          <li style="color:white; background-color: rgb(172, 12, 12); padding: 3px;"><i class="fas fa-clock"></i>{{ task.title }}</li>
+        </a>
+      {% endif %}
+    {% empty %}
+      <li>No tasks yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

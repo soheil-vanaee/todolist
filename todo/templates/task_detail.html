@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 id="header">{{ task.title }}</h1><hr>
+<p>{{ task.description }}</p>
+{% if task.done %}
+    <style>
+        #header{
+            background-color: rgb(158, 247, 140);
+            padding: 10px;
+            border-radius: 20px;
+        }
+    </style>
+    <p>This operation has been completed. Move on to the next operation. ✅ </p>
+{% else %}
+<style>
+    #header{
+        background-color: rgb(199, 43, 43);
+        color: white;
+        padding: 10px;
+        border-radius: 20px;
+    }
+</style>
+    <p>Did you forget to perform this operation ⁉️</p>
+{% endif %}
+
+{% endblock content %}
